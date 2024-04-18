@@ -1,0 +1,66 @@
+<idea-plugin>
+    <id>com.service.navigator</id>
+
+    <name>Service Navigator</name>
+
+    <vendor email="higuokai@gmail.com" url="#">None</vendor>
+
+    <description><![CDATA[
+    <p>A tool to assist in interface development on the IntelliJ platform.</p>
+    
+    <ul>
+        <li>Restful service automatic scanning, display, searching and navigation.</li>
+    </ul>
+
+    <p>Use the default shortcut CTRL + ALT + / to find service.</p>
+  ]]></description>
+
+    <!--  依赖  -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow factoryClass="com.service.navigator.view.ServiceNavigatorToolWindowFactory"
+                    id="Service Navigator" secondary="true" anchor="right" icon="/icons/favicon.svg" />
+
+        <projectService serviceImplementation="com.service.navigator.config.NavigatorConfiguration"/>
+
+        <notificationGroup displayType="BALLOON" id="Service.Navigator.Notify"
+                           toolWindowId="Service Navigator"/>
+
+    </extensions>
+
+    <actions>
+
+        <action id="sm.apis.searchEverywhere" class="com.service.navigator.action.apis.SearchEverywhereAction">
+            <add-to-group group-id="GoToTargetEx" anchor="first"/>
+            <!-- ctrl alt / -->
+            <keyboard-shortcut first-keystroke="control alt SLASH" keymap="$default"/>
+        </action>
+
+        <!-- 右键service -->
+        <group id="apis.requestMenu">
+            <action id="api.copyUrlAction" class="com.service.navigator.action.apis.CopyUrlAction"/>
+            <action id="api.copyFullUrlAction" class="com.service.navigator.action.apis.CopyFullUrlAction"/>
+            <separator/>
+            <action id="api.jumpToSourceAction" class="com.service.navigator.action.apis.JumpToSourceAction"/>
+        </group>
+
+        <!-- 模块右键 -->
+        <group id="apis.moduleMenu">
+            <action id="Module.editPort" class="com.service.navigator.action.apis.ModulePortEditAction"/>
+            <action id="Module.editServiceContext" class="com.service.navigator.action.apis.ModuleServiceContextEditAction"/>
+        </group>
+
+        <!-- 代码区右键 -->
+        <group id="sm.apis.optionForEditors" text="RestfulApis">
+            <add-to-group group-id="Copy.Paste.Special" anchor="after" relative-to-action="PasteMultiple"/>
+            <group id="sm.apis.optionForEditors.copy" text="Service Navigator Copy">
+                <separator/>
+                <action id="api.edit.copyUrlAction" class="com.service.navigator.action.apis.EditTextCopyUrlAction"/>
+                <action id="api.edit.copyFullUrlAcion" class="com.service.navigator.action.apis.EditTextCopyFullUrlAction"/>
+            </group>
+        </group>
+    </actions>
+
+</idea-plugin>
