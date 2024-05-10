@@ -6,7 +6,6 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
 import com.service.navigator.model.ApiService;
 import com.service.navigator.utils.ApiServiceUtil;
-import com.service.navigator.utils.ApplicationContext;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -28,7 +27,8 @@ public class GotoRequestContributor implements ChooseByNameContributor {
 
         cacheSearchItemList.clear();
 
-        ApplicationContext.getApiTree(project).refreshApiTreeLater();
+        // search everywhere时不再刷新树
+//        ApplicationContext.getApiTree(project).refreshApiTreeLater();
 
         return apiServices
                 .entrySet().stream()
