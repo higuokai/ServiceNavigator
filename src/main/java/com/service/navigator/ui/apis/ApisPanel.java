@@ -1,4 +1,4 @@
-package com.service.navigator.view.apis;
+package com.service.navigator.ui.apis;
 
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionPlaces;
@@ -10,20 +10,14 @@ import com.service.navigator.action.apis.*;
 
 public class ApisPanel extends SimpleToolWindowPanel {
 
-    private final Project project;
-
-    private final ApiTree apiTree;
-
     public ApisPanel(Project project) {
         super(true);
-
-        this.project = project;
 
         // 工具条
         ActionToolbar actionToolbar = initActionToolbar();
         setToolbar(actionToolbar.getComponent());
         // api树
-        apiTree = new ApiTree(this.project);
+        ApiTree apiTree = new ApiTree(project);
         actionToolbar.setTargetComponent(apiTree);
         setContent(apiTree);
     }

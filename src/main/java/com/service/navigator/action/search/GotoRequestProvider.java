@@ -1,4 +1,4 @@
-package com.service.navigator.action.ui.search;
+package com.service.navigator.action.search;
 
 import com.intellij.ide.util.gotoByName.DefaultChooseByNameItemProvider;
 import com.intellij.psi.PsiElement;

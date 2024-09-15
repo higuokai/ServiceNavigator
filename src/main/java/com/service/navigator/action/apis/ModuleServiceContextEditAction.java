@@ -6,7 +6,7 @@ import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.InputValidator;
 import com.intellij.openapi.ui.Messages;
-import com.service.navigator.config.NavigatorConfiguration;
+import com.service.navigator.service.MyProjectService;
 import com.service.navigator.constant.TreeDataKey;
 import com.service.navigator.model.ApiModule;
 import com.service.navigator.utils.ApplicationContext;
@@ -34,7 +34,7 @@ public class ModuleServiceContextEditAction extends DumbAwareAction {
         }
         ApiModule apiModule = apiModules.get(0);
 
-        NavigatorConfiguration configuration = ApplicationContext.getConfiguration(project);
+        MyProjectService configuration = ApplicationContext.getConfiguration(project);
 
         String oldContext = configuration.getModuleContext(apiModule.getModuleName());
 

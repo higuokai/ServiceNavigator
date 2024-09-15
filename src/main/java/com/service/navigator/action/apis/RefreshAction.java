@@ -4,6 +4,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.project.Project;
 import com.service.navigator.constant.Icons;
+import com.service.navigator.utils.ApiServiceUtil;
 import com.service.navigator.utils.ApplicationContext;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,6 +22,7 @@ public class RefreshAction extends DumbAwareAction {
         if (Objects.isNull(project)) {
             return;
         }
+        ApplicationContext.removeApiCache(project);
         // 调用刷新按钮
         ApplicationContext.getApiTree(project).refreshApiTreeLater();
     }

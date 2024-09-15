@@ -1,9 +1,8 @@
-package com.service.navigator.config;
+package com.service.navigator.service;
 
-import com.intellij.openapi.components.PersistentStateComponent;
-import com.intellij.openapi.components.SettingsCategory;
-import com.intellij.openapi.components.State;
-import com.intellij.openapi.components.Storage;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import com.intellij.openapi.components.*;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,13 +18,14 @@ import java.util.*;
         storages = @Storage("service_navigator/apis_options.xml"),
         category = SettingsCategory.CODE
 )
-public class NavigatorConfiguration implements PersistentStateComponent<NavigatorConfiguration> {
+@Service(Service.Level.PROJECT)
+public class MyProjectService implements PersistentStateComponent<MyProjectService> {
 
-    private Map<String, Integer> modulePortMap = new HashMap<>();
+    private Map<String, Integer> modulePortMap = Maps.newHashMap();
 
-    private Map<String, String> moduleContextMap = new HashMap<>();
+    private Map<String, String> moduleContextMap = Maps.newHashMap();
 
-    private Set<String> disabledModules = new HashSet<>();
+    private Set<String> disabledModules = Sets.newHashSet();
 
     private boolean scanServiceWithLib = false;
 
@@ -75,14 +75,13 @@ public class NavigatorConfiguration implements PersistentStateComponent<Navigato
         }
     }
 
-
     @Override
-    public @Nullable NavigatorConfiguration getState() {
+    public @Nullable MyProjectService getState() {
         return this;
     }
 
     @Override
-    public void loadState(@NotNull NavigatorConfiguration state) {
+    public void loadState(@NotNull MyProjectService state) {
         XmlSerializerUtil.copyBean(state, this);
     }
 }

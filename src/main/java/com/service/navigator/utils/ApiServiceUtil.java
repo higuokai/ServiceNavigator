@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
-import com.service.navigator.config.NavigatorConfiguration;
+import com.service.navigator.service.MyProjectService;
 import com.service.navigator.model.ApiService;
 import com.service.navigator.scanner.ScannerHelper;
 import org.apache.commons.collections.CollectionUtils;
@@ -16,7 +16,13 @@ import java.util.stream.Collectors;
 public class ApiServiceUtil {
 
     public static Map<String, List<ApiService>> getApis(@NotNull Project project) {
-        return getApis(project, ModuleManager.getInstance(project).getModules());
+        Map<String, List<ApiService>> apiCache = ApplicationContext.getApiCache(project);
+        if (apiCache != null) {
+            return apiCache;
+        }
+        apiCache = getApis(project, ModuleManager.getInstance(project).getModules());
+        ApplicationContext.setApiCache(project, apiCache);
+        return apiCache;
     }
 
     public static List<ApiService> getApisForEditor(@NotNull Project project) {
@@ -27,7 +33,7 @@ public class ApiServiceUtil {
 
     public static Map<String, List<ApiService>> getApis(@NotNull Project project, @NotNull Module[] modules) {
         // 初始化模块过滤
-        NavigatorConfiguration.ModuleFilter moduleFilter = ApplicationContext.getConfiguration(project).getModuleFilter();
+        MyProjectService.ModuleFilter moduleFilter = ApplicationContext.getConfiguration(project).getModuleFilter();
         moduleFilter.setAllModules(Arrays.stream(modules).map(Module::getName).collect(Collectors.toList()));
 
         Map<String, List<ApiService>> resultMap = Maps.newHashMapWithExpectedSize(modules.length);

@@ -1,4 +1,4 @@
-package com.service.navigator.view.model.apis;
+package com.service.navigator.ui.apis.model;
 
 import com.intellij.psi.NavigatablePsiElement;
 import com.intellij.psi.PsiClass;

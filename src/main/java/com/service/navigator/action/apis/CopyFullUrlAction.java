@@ -1,10 +1,9 @@
 package com.service.navigator.action.apis;
 
-import com.intellij.icons.AllIcons;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.project.Project;
-import com.service.navigator.config.NavigatorConfiguration;
+import com.service.navigator.service.MyProjectService;
 import com.service.navigator.constant.Icons;
 import com.service.navigator.constant.TreeDataKey;
 import com.service.navigator.model.ApiService;
@@ -19,7 +18,7 @@ import java.util.List;
 public class CopyFullUrlAction extends DumbAwareAction {
 
     public CopyFullUrlAction() {
-        super("Copy Full Url", "", Icons.System.Copy);
+        super("Copy Full Url", "", Icons.System.CopyFull);
     }
 
     @Override
@@ -36,7 +35,7 @@ public class CopyFullUrlAction extends DumbAwareAction {
         // 获取模块名
         String moduleName = apiService.getModuleName();
 
-        NavigatorConfiguration configuration = ApplicationContext.getConfiguration(project);
+        MyProjectService configuration = ApplicationContext.getConfiguration(project);
 
         Integer port = configuration.getModulePort(moduleName);
         String context = configuration.getModuleContext(moduleName);

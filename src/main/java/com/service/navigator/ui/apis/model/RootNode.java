@@ -1,4 +1,4 @@
-package com.service.navigator.view.model.apis;
+package com.service.navigator.ui.apis.model;
 
 import com.intellij.ide.util.treeView.NodeDescriptor;
 import com.intellij.openapi.project.Project;

@@ -1,13 +1,11 @@
-package com.service.navigator.view.model.apis;
+package com.service.navigator.ui.apis.model;
 
-import com.intellij.ide.util.treeView.NodeDescriptor;
 import com.intellij.ui.treeStructure.SimpleNode;
 import com.service.navigator.constant.Icons;
 import com.service.navigator.model.ApiModule;
 import com.service.navigator.model.ApiService;
 import lombok.Getter;
 import lombok.Setter;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.List;

@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.service.navigator"
-version = "2023.4-1.0"
+version = "2024.2-1-0"
 
 repositories {
     mavenLocal()
@@ -20,7 +20,7 @@ dependencies {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2023.3.3")
+    version.set("2024.2")
     type.set("IU") // Target IDE Platform
 
     plugins.set(listOf("java"))
@@ -38,7 +38,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("222")
-        untilBuild.set("241.*")
+        untilBuild.set("242.*")
     }
 
     signPlugin {

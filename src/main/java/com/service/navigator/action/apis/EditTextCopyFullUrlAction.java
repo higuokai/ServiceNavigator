@@ -9,7 +9,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiMethod;
 import com.service.navigator.action.Notify;
-import com.service.navigator.config.NavigatorConfiguration;
+import com.service.navigator.service.MyProjectService;
 import com.service.navigator.model.ApiService;
 import com.service.navigator.utils.ApiServiceUtil;
 import com.service.navigator.utils.ApplicationContext;
@@ -55,7 +55,7 @@ public class EditTextCopyFullUrlAction extends DumbAwareAction {
         // 获取模块名
         String moduleName = apiService.getModuleName();
 
-        NavigatorConfiguration configuration = ApplicationContext.getConfiguration(project);
+        MyProjectService configuration = ApplicationContext.getConfiguration(project);
 
         Integer port = configuration.getModulePort(moduleName);
         String context = configuration.getModuleContext(moduleName);

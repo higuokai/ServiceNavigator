@@ -45,6 +45,7 @@ public class Icons {
         public static final Icon CopyFull = load("/icons/system/copyFull.svg");
 
         public static final Icon Jump = load("/icons/system/jump.svg");
+
     }
 
     public static class Node {
@@ -52,16 +53,8 @@ public class Icons {
         public static final Icon ModuleNode = AllIcons.Nodes.Module;
 
         public static Icon getServiceNodeIcon(ApiService apiService) {
-            if (apiService.getApiType() == com.service.navigator.constant.ApiType.Xxl) {
-                return ApiType.Xxl;
-            }
             return HTTP.METHOD.get(((SpringApiService)apiService).getMethod());
         }
-    }
-
-    public static class ApiType {
-        public static final Icon Spring = load("/icons/system/spring.svg");
-        public static final Icon Xxl = load("/icons/system/xxl.svg");
     }
 
     private static Icon load(String path) {

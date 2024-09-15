@@ -1,6 +1,7 @@
 package com.service.navigator.action.apis;
 
 import com.intellij.icons.AllIcons;
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.ToggleAction;
 import com.intellij.openapi.project.Project;
@@ -30,5 +31,10 @@ public class EnableLibraryAction extends ToggleAction {
         }
         ApplicationContext.getConfiguration(project).setScanServiceWithLib(state);
         ApplicationContext.getApiTree(project).refreshApiTree();
+    }
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.BGT;
     }
 }

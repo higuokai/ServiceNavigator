@@ -20,10 +20,10 @@
     <depends>com.intellij.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.service.navigator.view.ServiceNavigatorToolWindowFactory"
-                    id="Service Navigator" secondary="true" anchor="right" icon="/icons/favicon.svg" />
+        <toolWindow factoryClass="com.service.navigator.ui.MyToolWindowFactory"
+                    id="ApiNavigator" secondary="true" anchor="right" icon="/icons/favicon.svg" />
 
-        <projectService serviceImplementation="com.service.navigator.config.NavigatorConfiguration"/>
+        <projectService serviceImplementation="com.service.navigator.service.MyProjectService"/>
 
         <notificationGroup displayType="BALLOON" id="Service.Navigator.Notify"
                            toolWindowId="Service Navigator"/>

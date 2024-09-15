@@ -10,10 +10,10 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
-import com.service.navigator.action.ui.search.GotoRequestContributor;
-import com.service.navigator.action.ui.search.GotoRequestProvider;
-import com.service.navigator.action.ui.search.RequestFilteringGotoByModel;
-import com.service.navigator.action.ui.search.RestSearchItem;
+import com.service.navigator.action.search.GotoRequestContributor;
+import com.service.navigator.action.search.GotoRequestProvider;
+import com.service.navigator.action.search.RequestFilteringGotoByModel;
+import com.service.navigator.action.search.RestSearchItem;
 import com.service.navigator.constant.HttpMethod;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,8 +44,7 @@ public class SearchEverywhereAction extends GotoActionBase implements DumbAware 
 
             @Override
             public void elementChosen(ChooseByNamePopup popup, Object element) {
-                if (element instanceof RestSearchItem) {
-                    RestSearchItem navigationItem = (RestSearchItem) element;
+                if (element instanceof RestSearchItem navigationItem) {
                     if (navigationItem.canNavigate()) {
                         navigationItem.navigate(true);
                     }

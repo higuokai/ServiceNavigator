@@ -2,17 +2,14 @@ package com.service.navigator.action.apis;
 
 import com.intellij.ide.IdeBundle;
 import com.intellij.ide.util.ElementsChooser;
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.CommonDataKeys;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
-import com.intellij.openapi.actionSystem.ToggleAction;
+import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.popup.JBPopup;
 import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.ui.popup.JBPopupListener;
 import com.intellij.openapi.ui.popup.LightweightWindowEvent;
 import com.intellij.util.containers.ContainerUtil;
-import com.service.navigator.config.NavigatorConfiguration;
+import com.service.navigator.service.MyProjectService;
 import com.service.navigator.constant.Icons;
 import com.service.navigator.utils.ApplicationContext;
 import org.jetbrains.annotations.NotNull;
@@ -120,7 +117,7 @@ public class ModuleFilterAction extends ToggleAction {
 
     private ElementsChooser<String> createChooser(@NotNull Project project) {
 
-        NavigatorConfiguration.ModuleFilter moduleFilter = ApplicationContext.getConfiguration(project).getModuleFilter();
+        MyProjectService.ModuleFilter moduleFilter = ApplicationContext.getConfiguration(project).getModuleFilter();
 
         List<String> allModules = moduleFilter.getAllModules();
         ElementsChooser<String> res = new ElementsChooser<String>(allModules, false) {
@@ -131,11 +128,15 @@ public class ModuleFilterAction extends ToggleAction {
         };
         res.markElements(ContainerUtil.filter(allModules, moduleFilter::isVisible));
 
-        ElementsChooser.ElementsMarkListener<String> listener = (element, isMarked) -> {
-            moduleFilter.setModuleVisible(element, isMarked);
-//            SnailManWindowFactory.getApiPanel(project).refreshApiTree();
-        };
+        //            SnailManWindowFactory.getApiPanel(project).refreshApiTree();
+        ElementsChooser.ElementsMarkListener<String> listener = moduleFilter::setModuleVisible;
         res.addElementsMarkListener(listener);
         return res;
     }
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.BGT;
+    }
+    
 }

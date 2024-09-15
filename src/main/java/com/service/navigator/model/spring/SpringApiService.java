@@ -1,7 +1,6 @@
 package com.service.navigator.model.spring;
 
 import com.intellij.psi.NavigatablePsiElement;
-import com.service.navigator.constant.ApiType;
 import com.service.navigator.constant.HttpMethod;
 import com.service.navigator.model.ApiService;
 import lombok.Getter;
@@ -18,7 +17,7 @@ public class SpringApiService extends ApiService {
     private String path;
 
     public SpringApiService(HttpMethod method, String path, NavigatablePsiElement psiElement) {
-        super(ApiType.Spring, psiElement);
+        super(psiElement);
         this.method = method;
         this.path = path;
     }

@@ -1,4 +1,4 @@
-package com.service.navigator.action.ui.search;
+package com.service.navigator.action.search;
 
 import com.intellij.ide.util.gotoByName.ChooseByNameItemProvider;
 import com.intellij.ide.util.gotoByName.ChooseByNameModel;

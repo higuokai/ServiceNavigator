@@ -1,5 +1,6 @@
 package com.service.navigator.action.apis;
 
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.util.PsiNavigateUtil;
@@ -34,5 +35,10 @@ public class JumpToSourceAction extends DumbAwareAction {
                     .findFirst()
                     .ifPresent(item -> PsiNavigateUtil.navigate(((SpringApiService) item).getPsiElement()));
         }
+    }
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.BGT;
     }
 }

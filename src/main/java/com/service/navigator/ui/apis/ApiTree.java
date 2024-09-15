@@ -1,4 +1,4 @@
-package com.service.navigator.view.apis;
+package com.service.navigator.ui.apis;
 
 import com.intellij.ide.util.treeView.AbstractTreeStructure;
 import com.intellij.openapi.Disposable;
@@ -23,10 +23,10 @@ import com.service.navigator.model.ApiService;
 import com.service.navigator.utils.ApiServiceUtil;
 import com.service.navigator.utils.ApplicationContext;
 import com.service.navigator.utils.IdeaUtils;
-import com.service.navigator.view.model.apis.BaseNode;
-import com.service.navigator.view.model.apis.ModuleNode;
-import com.service.navigator.view.model.apis.RootNode;
-import com.service.navigator.view.model.apis.ServiceNode;
+import com.service.navigator.ui.apis.model.BaseNode;
+import com.service.navigator.ui.apis.model.ModuleNode;
+import com.service.navigator.ui.apis.model.RootNode;
+import com.service.navigator.ui.apis.model.ServiceNode;
 import lombok.Getter;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
@@ -114,7 +114,7 @@ public class ApiTree extends JPanel implements DataProvider, Disposable {
             // 重新渲染树
             AppUIUtil.invokeOnEdt(() -> rootNode.updateModuleNodes(restModules));
         };
-        IdeaUtils.backBackgroundTask("[ServiceNavigator] Search restful apis...", project, backgroundTask);
+        IdeaUtils.backBackgroundTask("ApiNavigator Search Restful Apis...", project, backgroundTask);
     }
 
 
@@ -206,7 +206,8 @@ public class ApiTree extends JPanel implements DataProvider, Disposable {
 
     @Override
     public void dispose() {
-
+        // 销毁事件
+        ApplicationContext.close(this.project);
     }
 
     public void expandAll(boolean expand) {

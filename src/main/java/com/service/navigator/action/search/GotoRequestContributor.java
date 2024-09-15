@@ -1,4 +1,4 @@
-package com.service.navigator.action.ui.search;
+package com.service.navigator.action.search;
 
 import com.intellij.navigation.ChooseByNameContributor;
 import com.intellij.navigation.NavigationItem;
@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class GotoRequestContributor implements ChooseByNameContributor {
@@ -39,7 +40,7 @@ public class GotoRequestContributor implements ChooseByNameContributor {
 
     @Override
     public NavigationItem @NotNull [] getItemsByName(String name, String pattern, Project project, boolean includeNonProjectItems) {
-        List<RestSearchItem> patternList = cacheSearchItemList.stream().filter(e -> e.getName().contains(name)).collect(Collectors.toList());
+        List<RestSearchItem> patternList = cacheSearchItemList.stream().filter(e -> Objects.requireNonNull(e.getName()).contains(name)).toList();
         return patternList.toArray(new NavigationItem[0]);
     }
 }

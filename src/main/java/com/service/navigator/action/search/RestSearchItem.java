@@ -1,4 +1,4 @@
-package com.service.navigator.action.ui.search;
+package com.service.navigator.action.search;
 
 import com.intellij.navigation.ItemPresentation;
 import com.intellij.navigation.NavigationItem;

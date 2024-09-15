@@ -6,7 +6,7 @@ import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.service.navigator.utils.ApplicationContext;
-import com.service.navigator.view.apis.ApiTree;
+import com.service.navigator.ui.apis.ApiTree;
 import org.jetbrains.annotations.NotNull;
 
 public class ExpandAllAction extends DumbAwareAction {
